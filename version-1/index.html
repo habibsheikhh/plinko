@@ -7,7 +7,7 @@
   <title>Canvas Game</title>
   <style>
     canvas {
-      background-color: #000;
+      background-color: black;
     }
 
     #add-ball {
@@ -57,7 +57,7 @@
       const y = 0 + row * 35;
       const spacing = 36;
       for (let col = 0; col < numObstacles; col++) {
-        const x = WIDTH / 2 - spacing * (row / 2 - col);
+        const x = WIDTH / 2 - spacing * (row / 2 - col);  // IMP
         obstacles.push({ x: pad(x), y: pad(y), radius: obstacleRadius });
       }
     }
@@ -92,14 +92,14 @@
         ctx.beginPath();
         ctx.arc(unpad(this.x), unpad(this.y), this.radius, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
-        ctx.fill();
+        ctx.fill(); 
         ctx.closePath();
       }
       
       update() {
         // change the velocity, change the positions
-        this.vy = this.vy + gravity;
-        this.x += this.vx; // x = x1 + v
+        this.vy = this.vy + gravity; // v = u + at
+        this.x += this.vx; // x = x1 + v 
         this.y += this.vy;
 
         // Collision with obstacles
